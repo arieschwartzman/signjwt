@@ -10,7 +10,10 @@
             "name": "Launch Program",            
             "program": "./dist/app.js",
             "preLaunchTask": "tsc: build - tsconfig.json",
-            "sourceMaps": true
+            "sourceMaps": true,
+            "env": {
+                "API_KEY": ""
+            }
         }
     ]
 }
