@@ -22,7 +22,7 @@ app.use(express.json());
 
 interface IPayload {
   secret: string | undefined;
-  audience: string;
+  audience: string | undefined;
 }
 
 // Middleware to check API key
@@ -39,15 +39,19 @@ app.use((req: Request, res: Response, next: Function) => {
 // Endpoint to create a JWT
 app.post('/sign', (req: Request, res: Response) => {
   const payload: IPayload = req.body;
-  const secret = payload.secret;  
-  payload.secret = undefined;
+  const secret = payload.secret;
+  const audience = payload.audience;
+  // remove secret and audience from payload
+  delete payload.secret;
+  delete payload.audience;  
   // Sign the JWT
   if (secret) {
     // Log the signing payload take 5 characters of the secret
     console.log(`Signing payload: ${secret.slice(0, 5)}...`);
-    const token = jwt.sign(payload, secret, { expiresIn: '1h', audience: payload.audience });
+    const token = jwt.sign(payload, secret, { expiresIn: '1h', audience});
     return res.json({ token });
   }
+  console.log('Secret is required');
   return res.status(400).json({ message: 'Secret is required' });
 
 });
