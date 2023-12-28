@@ -39,10 +39,12 @@ app.use((req: Request, res: Response, next: Function) => {
 // Endpoint to create a JWT
 app.post('/sign', (req: Request, res: Response) => {
   const payload: IPayload = req.body;
-  const secret = payload.secret;
+  const secret = payload.secret;  
   payload.secret = undefined;
   // Sign the JWT
   if (secret) {
+    // Log the signing payload take 5 characters of the secret
+    console.log(`Signing payload: ${secret.slice(0, 5)}...`);
     const token = jwt.sign(payload, secret, { expiresIn: '1h', audience: payload.audience });
     return res.json({ token });
   }
