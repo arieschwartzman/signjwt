@@ -25,5 +25,5 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: my-image-name:$(date +%s)
+        tags: arieschwartzman/signjwt:1.0.2
         
