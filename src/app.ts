@@ -1,7 +1,10 @@
+import dotenv from 'dotenv';
 import express, { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 
 const app = express();
+dotenv.config();
+
 const PORT = process.env.PORT || 3000;
 const API_KEY = process.env.API_KEY;
 
@@ -10,6 +13,9 @@ if (!API_KEY) {
   console.error('API_KEY is not set');
   process.exit(1);
 }
+
+console.log(`API_KEY: ${API_KEY}`);
+
 
 // Middleware for JSON payload parsing
 app.use(express.json());
