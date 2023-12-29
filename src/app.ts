@@ -26,13 +26,15 @@ interface IPayload {
 }
 
 // Middleware to check API key
-app.use((req: Request, res: Response, next: Function) => {
-  const apiKey = req.headers['x-api-key'];
+app.use((req: Request, res: Response, next: Function) => {  
+  if (req.path === '/health') {
+    return next();
+  }  
   
+  const apiKey = req.headers['x-api-key'];
   if (!apiKey || apiKey !== API_KEY) {
     return res.status(401).json({ message: 'Unauthorized: Invalid API key' });
   }
-  
   next();
 });
 
