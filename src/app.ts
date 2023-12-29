@@ -56,6 +56,11 @@ app.post('/sign', (req: Request, res: Response) => {
 
 });
 
+// Endpoint to check health
+app.get('/health', (req: Request, res: Response) => {
+  res.json({ status: 'Healthy' });
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

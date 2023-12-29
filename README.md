@@ -66,6 +66,21 @@ npm start
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWRpZW5jZSI6InlvdXJfYXVkaWVuY2UiLCJpYXQiOjE1MTYyMzkwMjIsImV4cCI6MTUxNjI0MjYyMn0.ih1a0wR5p07s7B8eIiKA7TbCqxGVuCwK3I2C6l1BwEI"
     }
     ```
+- `GET /health` - Checks the health of the application.
+
+    For example:
+
+    ```bash
+    curl -X GET https://{host}/health
+    ```
+
+    If the application is running properly, you will receive a response like this:
+
+    ```json
+    {
+    "status": "Healthy"
+    }
+    ```
 
 ## Built With
 
